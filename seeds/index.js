@@ -16,6 +16,7 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
+//pass in the array and return a (random) element from that array
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
 
