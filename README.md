@@ -11,4 +11,4 @@ Campground finder app
 
 ## Installation
 
-1. Install dependences: `npm i express mongoose ejs method-override`
+1. Install dependences: `npm install`
