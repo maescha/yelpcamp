@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 
-const Campground = require('./models/campground')
+const Campground = require('./models/campground');
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useUnifiedTopology: true,
@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp', {
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
-    console.log("Database connected"); test
+    console.log("Database connected");
 });
 
 const app = express();
@@ -35,12 +35,12 @@ app.get('/', (req, res) => {
 })
 
 //411. making a basic model to check whether or not the app works
-// app.get('/makecampground', async (req, res) => {
-//     const camp = new Campground({title: 'my backyard', description: 'cheap camping'});
-//     await camp.save();
+app.get('/makecampground', async (req, res) => {
+    const camp = new Campground({title: 'my backyard', description: 'cheap camping'});
+    await camp.save();
 
-//     res.send(camp)
-// })
+    res.send(camp)
+})
 
 //PLEASE NOTE THAT PLACEMENT MATTERS FOR URLS
 
