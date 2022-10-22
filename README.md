@@ -11,4 +11,9 @@ Campground finder app
 
 ## Installation
 
-1. Install dependences: `npm install`
+1. Install dependences: `npm i`
+
+## Usage
+
+1. run `node seeds/index.js`
+2. run `npx nodemon`
