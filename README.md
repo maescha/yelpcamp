@@ -15,5 +15,5 @@ Campground finder app
 
 ## Usage
 
-1. run `node seeds/index.js`
+1. run `node seeds/index.js` to seed database (only do ONCE)
 2. run `npx nodemon`
