@@ -59,6 +59,8 @@ app.get('/campgrounds/new', (req, res) => {
 
 //setting up the endpoint where created data will be send to
 app.post('/campgrounds', catchAsync(async(req, res, next) => {
+    if(!req.body.campground) throw new ExpressError('Invalid Campground Data', 400);
+
     const campground = new Campground(req.body.campground);
     await campground.save();
     res.redirect(`/campgrounds/${campground._id}`);
@@ -97,8 +99,11 @@ app.all('*', (req, res, next) => {
 
 // error handling
 app.use((err, req, res, next) => {
-    const{statusCode = 500, message = 'Oh no, something went wrong!'} = err;
-    res.status(statusCode).send(message);
+    const{statusCode = 500} = err;
+
+    if(!err.message) err.message = 'Oh no, something went wrong!';
+
+    res.status(statusCode).render('errors', {err});
 });
 
 app.listen(3000, () => {
