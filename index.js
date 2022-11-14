@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const catchAsync = require('./utils/catchAsync');
+const ExpressError = require('./utils/ExpressError');
 
 const Campground = require('./models/campground');
 
@@ -89,9 +90,15 @@ app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
     res.redirect('/campgrounds');
 }));
 
+// incorrect urls go to 404 page
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404))
+})
+
 // error handling
 app.use((err, req, res, next) => {
-    res.send('Oh no, something went wrong!');
+    const{statusCode = 500, message = 'Oh no, something went wrong!'} = err;
+    res.status(statusCode).send(message);
 });
 
 app.listen(3000, () => {
