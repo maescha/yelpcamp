@@ -106,6 +106,12 @@ app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
     res.redirect('/campgrounds');
 }));
 
+//getting the reviews to submit and show on page
+app.post('/campgrounds/:id/reviews', catchAsync(async(req, res) => {
+    res.send('DONE')
+}))
+
+
 // incorrect urls go to 404 page
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
