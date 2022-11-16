@@ -9,6 +9,7 @@ const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 
 const Campground = require('./models/campground');
+const Review = require('./models/review');
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     useUnifiedTopology: true,
@@ -108,7 +109,13 @@ app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
 
 //getting the reviews to submit and show on page
 app.post('/campgrounds/:id/reviews', catchAsync(async(req, res) => {
-    res.send('DONE')
+    const campground = await Campground.findById(req.params.id);
+    const review = new Review(req.body.review);
+    campground.reviews.push(review);
+
+    await review.save();
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
 }))
 
 
