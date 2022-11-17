@@ -130,6 +130,15 @@ app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async(req, res) 
     res.redirect(`/campgrounds/${campground._id}`);
 }))
 
+//deleting reviews
+app.delete('/campgrounds/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const {id, reviewId} = req.params;
+
+    await Campground.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+
+    res.redirect(`/campgrounds/${id}`)
+}))
 
 // incorrect urls go to 404 page
 app.all('*', (req, res, next) => {
