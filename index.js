@@ -9,7 +9,7 @@ const methodOverride = require('method-override');
 
 
 const campgrounds = require('./routes/campgrounds');
-//const reviews = require('./routes/reviews');
+const reviews = require('./routes/reviews');
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     useUnifiedTopology: true,
@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/campgrounds', campgrounds)
-// app.use('/campgrounds/:id/reviews', reviews)
+app.use('/campgrounds/:id/reviews', reviews)
 
 app.get('/', (req, res) => {
     res.render('home')
