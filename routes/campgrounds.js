@@ -3,6 +3,7 @@ const ExpressError = require('../utils/ExpressError');
 const Campground = require('../models/campground');
 const catchAsync = require('../utils/catchAsync');
 const {campgroundSchema, reviewSchema} = require('../schemas.js');
+const ObjectID = require('mongoose').Types.ObjectId;
 
 const router = express.Router();
 
@@ -43,13 +44,25 @@ router.post('/', validateCampground, catchAsync(async(req, res, next) => {
 
 //details page for selected campground, will also display reveiws
 router.get('/:id', catchAsync(async(req, res) => {
+  if (req.params.id.length !==24) {
+    req.flash('error', 'Cannot find that campground.');
+    return res.redirect('/campgrounds');
+  }
   const campground = await Campground.findById(req.params.id).populate('reviews');
-  res.render('campgrounds/show', {campground})
+  if (!campground) {
+    req.flash('error', 'Cannot find that campground.');
+    return res.redirect('/campgrounds');
+  }
+  res.render('campgrounds/show', { campground, title: campground.title });
 }));
 
 //edit campground details page
 router.get('/:id/edit', catchAsync(async (req, res) => {
   const campground = await Campground.findById(req.params.id);
+  if(!campground){
+    req.flash('error', 'Cannot find that campground');
+    return res.redirect('/campgrounds');
+  }
   res.render('campgrounds/edit', {campground})
 }));
 
