@@ -20,8 +20,6 @@ const validateReview = (req, res, next) => {
     }
 }
 
-
-
 router.post('/', validateReview, catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     const review = new Review(req.body.review);
