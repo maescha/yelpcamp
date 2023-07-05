@@ -6,7 +6,7 @@
 
 ## Description
 
-Campground finder app
+Campground Finder app
 (**description to be edited**)
 
 ## Installation
