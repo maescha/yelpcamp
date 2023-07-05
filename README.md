@@ -8,14 +8,13 @@
 
 Campground finder app
 
-> Testing
 (**description to be edited**)
 
-## Installation
-
-1. Install dependences: `npm i`
-
 ## Usage
+a. if downloading on a new device, reminder to `npm i` to install dependencies (ignored in cloning)
 
 1. run `node seeds/index.js` to seed database (only do ONCE)
-2. run `npx nodemon`
+>is this needed?
+
+2. run `mongosh` in a separate gitbash window
+2. run `npx nodemon` / `nodemon`

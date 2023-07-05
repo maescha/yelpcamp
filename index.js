@@ -16,6 +16,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false
+}).then(() => {
+    console.log("MONGO CONNECTION OPEN")
+})
+.catch(err => {
+    console.log("mongo connection error");
+    console.log(err);
 });
 
 const db = mongoose.connection;
@@ -36,8 +42,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 const sessionConfig = {
     secret: 'thisshouldbeabettersecret!',
-    resave: false,
+    resave: true,
     saveUninitialized: true,
+    
     cookie: {
         httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
