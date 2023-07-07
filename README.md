@@ -14,8 +14,8 @@ Campground finder app
 
 a. if downloading on a new device, reminder to `npm i` to install dependencies (ignored in cloning)
 
-**For first time use ONLY, no need to do multiple times on the same device. Even after a few days/weeks/months**
 1. run `node seeds/index.js` to seed database (only do ONCE)
+> **For first time use ONLY, no need to do multiple times on the same device. Even after a few days/weeks/months**
 
 2. run `mongosh` 
 2. run `npx nodemon` / `nodemon` in a separate gitbash/powershell window
