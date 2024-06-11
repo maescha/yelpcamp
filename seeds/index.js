@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
 const Campground = require('../models/campground');
+const { v4: uuidv4 } = require('uuid');
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     useNewUrlParser: true,
@@ -27,7 +28,7 @@ const seedDB = async () => {
         const camp = new Campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://picsum.photos/500/500',
+            image: `https://picsum.photos/seed/${uuidv4()}/500/500`,
             description: 'Amet adipisicing reprehenderit proident duis commodo ad id nisi dolore proident.',
             price
         })
