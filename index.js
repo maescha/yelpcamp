@@ -75,7 +75,6 @@ app.get('/fakeUser', async (req, res) => {
     const newUser = await User.register(user, 'password');
 
     res.send(newUser);
-
 });
 
 app.use('/campgrounds', campgrounds);
