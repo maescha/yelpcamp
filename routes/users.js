@@ -12,7 +12,7 @@ router.post('/register', async(req, res) => {
     const registeredUser = await User.register(user, password);
 
     console.log(registeredUser);
-    req.flash("welcome to yelp camp")
+    req.flash('success', "welcome to yelp camp")
     res.redirect('/campgrounds')
 })
 
