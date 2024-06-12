@@ -70,9 +70,9 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get('/fake', async (req, res) => {
-    const user = new User({email: 'asdasdasd@email.com', username:'dasdasade'});
-    const newUser = await User.register(user, 'pw');
+app.get('/fakeUser', async (req, res) => {
+    const user = new User({email: 'asdadasdasdsa@email.com', username:'fakeuser'});
+    const newUser = await User.register(user, 'password');
 
     res.send(newUser);
 
