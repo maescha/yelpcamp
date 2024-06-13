@@ -3,7 +3,7 @@ const ExpressError = require('../utils/ExpressError');
 const Campground = require('../models/campground');
 const catchAsync = require('../utils/catchAsync');
 const { campgroundSchema, reviewSchema } = require('../schemas.js');
-const ObjectID = require('mongoose').Types.ObjectId;
+const { isLoggedIn } = require('../middleware.js')
 
 const router = express.Router();
 
@@ -27,11 +27,8 @@ router.get('/', catchAsync(async (req, res) => {
 }));
 
 //creating new campgrounds
-router.get('/new', (req, res) => {
-  if (!req.isAuthenticated()) {
-    req.flash('error', 'you must be signed in to add new campgrounds!');
-    return res.redirect('/login');
-  }
+router.get('/new', isLoggedIn, (req, res) => {
+
   res.render('campgrounds/new')
 })
 
