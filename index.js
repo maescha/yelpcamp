@@ -14,7 +14,7 @@ const User = require('./models/user');
 //routes
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
-const userRoutes= require('./routes/users');
+const userRoutes = require('./routes/users');
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     useUnifiedTopology: true,
@@ -24,10 +24,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
 }).then(() => {
     console.log("MONGO CONNECTION OPEN")
 })
-.catch(err => {
-    console.log("mongo connection error");
-    console.log(err);
-});
+    .catch(err => {
+        console.log("mongo connection error");
+        console.log(err);
+    });
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -49,7 +49,7 @@ const sessionConfig = {
     secret: 'thisshouldbeabettersecret!',
     resave: true,
     saveUninitialized: true,
-    
+
     cookie: {
         httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
@@ -68,13 +68,14 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 })
 
 app.get('/fakeUser', async (req, res) => {
-    const user = new User({email: 'asdadasdasdsa@email.com', username:'fakeuser'});
+    const user = new User({ email: 'asdadasdasdsa@email.com', username: 'fakeuser' });
     const newUser = await User.register(user, 'password');
 
     res.send(newUser);
