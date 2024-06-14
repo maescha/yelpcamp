@@ -38,7 +38,7 @@ router.post('/login', storeReturnTo, passport.authenticate('local', { failureFla
     req.flash('success', `Welcome back, ${req.body.username}!`);
     const redirectUrl = res.locals.returnTo || '/campgrounds';
     res.redirect(redirectUrl);
-    delete redirectUrl;
+    delete req.session.returnTo;
 });
 
 //LOGOUT ROUTES
