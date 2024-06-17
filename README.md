@@ -27,4 +27,19 @@ B --> D(open `localhost:3000` in browser)
 C --> D
 ```
 
---- test
+## BUG FIX
+
+If you ever reseed or are installing this on a new device, once you have started up Yelp-Camp on your localhost server, you will have to **register a new user** or else you will get a
+`Cannot read properties of null (reading 'username') ` error when you open a campground details page.
+
+[Refer to this video for bug fix](https://www.youtube.com/watch?v=JivI-zeaW9o) or
+
+1. Register a new username
+2. go to `mongosh` and navigate to the correct database and type `dbs.users.find()`
+3. select and COPY the `_id` of a registered user
+4. Go back to your app and head over to the seeds directory and open the `seeds/index.js` file
+5. Once there, in the **seedDB** object, change the `author:` id to the one you have copied
+6. Go back to your gitbash/terminal and reseed your database
+   > Type `node seeds`
+7. Restart the server: `nodemon`
+8. Campground details page should now be viewable 🎉
