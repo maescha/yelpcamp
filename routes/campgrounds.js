@@ -3,14 +3,12 @@ const Campground = require('../models/campground');
 const catchAsync = require('../utils/catchAsync');
 const { campgroundSchema, reviewSchema } = require('../schemas.js');
 const { isLoggedIn, isAuthor, validateCampground } = require('../middleware.js')
+const campgrounds = require('../controllers/campgrounds.js');
 
 const router = express.Router();
 
 //renders all randomly generated campgrounds onto the 'main' page
-router.get('/', catchAsync(async (req, res) => {
-  const campgrounds = await Campground.find({});
-  res.render('campgrounds/index', { campgrounds });
-}));
+router.get('/', catchAsync(campgrounds.index));
 
 //creating new campgrounds
 router.get('/new', isLoggedIn, (req, res) => {
