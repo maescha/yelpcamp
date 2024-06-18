@@ -94,6 +94,7 @@ app.get('/', (req, res) => {
 
 
 app.all('*', (req, res, next) => {
+    res.redirect('/campgrounds');
     next(new ExpressError('Page Not Found', 404))
 })
 
