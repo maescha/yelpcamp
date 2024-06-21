@@ -5,7 +5,8 @@ const { campgroundSchema, reviewSchema } = require('../schemas.js');
 const { isLoggedIn, isAuthor, validateCampground } = require('../middleware.js')
 const campgrounds = require('../controllers/campgrounds.js');
 const multer  = require('multer');
-const upload = multer({ dest: 'uploads/' });
+const {storage} = require('../cloudinary');
+const upload = multer({ storage });
 
 const router = express.Router();
 
