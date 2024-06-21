@@ -12,6 +12,13 @@ Campground finder app
 
 (**description to be edited**)
 
+---
+
+note when working on another PC , will need to do another .env file
+for cloudinary info
+https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346302#questions
+THIS IS NEEDED FOR IMAGE UPLOAD
+
 ## Usage
 
 If it is your **first time** running app on device, please:
