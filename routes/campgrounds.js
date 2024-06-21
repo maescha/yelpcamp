@@ -4,6 +4,8 @@ const catchAsync = require('../utils/catchAsync');
 const { campgroundSchema, reviewSchema } = require('../schemas.js');
 const { isLoggedIn, isAuthor, validateCampground } = require('../middleware.js')
 const campgrounds = require('../controllers/campgrounds.js');
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const router = express.Router();
 
@@ -11,7 +13,11 @@ router.route('/')
     //renders all randomly generated campgrounds onto the 'main' page
     .get(catchAsync(campgrounds.index))
     //setting up the endpoint where created data will be send to
-    .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
+    // .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
+
+    .post(upload.single('campgroundImg'), (req,res) => {
+        res.send(req.file);
+    })
 
 //creating new campgrounds
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)

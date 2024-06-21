@@ -79,7 +79,7 @@ app.use((req, res, next) => {
 
 app.get('/fakeUser', async (req, res) => {
     const user = new User({ email: 'asdadasdasdsa@email.com', username: 'fakeuser' });
-    const newUser = await User.register(user, 'password');
+    const newUser = await User.register(user,'password');
 
     res.send(newUser);
 });
