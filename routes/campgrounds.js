@@ -16,8 +16,9 @@ router.route('/')
     //setting up the endpoint where created data will be send to
     // .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
 
-    .post(upload.single('campgroundImg'), (req,res) => {
-        console.log(req.files);
+    .post(upload.array('campgroundImg'), (req,res) => {
+        console.log(req.body, req.files);
+        res.send('it worked');
     })
 
 //creating new campgrounds
