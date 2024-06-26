@@ -52,6 +52,10 @@ module.exports.editForm = async (req, res) => {
 module.exports.updateCampground = async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
+    const images = req.files.map(f => ({url: f.path, filename: f.filename}));
+    ///... is a spread operator, so instead of pushing an array into an array, you're taking the data and saving it in
+    campground.images.push(...images);
+    await campground.save();
     req.flash('success', 'Sucessfully updated campground!');
     res.redirect(`/campgrounds/${campground._id}`)
 }

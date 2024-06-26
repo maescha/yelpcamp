@@ -23,7 +23,7 @@ router.route('/:id')
     //details page for selected campground, will also display reveiws
     .get(catchAsync(campgrounds.showCampground))
     //handles sending the inputted data to server to update database
-    .put(isLoggedIn, isAuthor, validateCampground, catchAsync(campgrounds.updateCampground))
+    .put(isLoggedIn, isAuthor, upload.array('campgroundImg'), validateCampground, catchAsync(campgrounds.updateCampground))
     //delete campground
     .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
