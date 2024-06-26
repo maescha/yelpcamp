@@ -17,7 +17,7 @@ router.route('/')
     // .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
 
     .post(upload.single('campgroundImg'), (req,res) => {
-        console.log(req.files);
+        res.send(req.body);
     })
 
 //creating new campgrounds

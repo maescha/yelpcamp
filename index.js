@@ -1,6 +1,6 @@
-if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config()
-}
+// if (process.env.NODE_ENV !== "production") {
+//     require('dotenv').config()
+// }
 
 console.log(process.env.SECRET);
 console.log(process.env.API_KEY);
@@ -84,16 +84,16 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get('/fakeUser', async (req, res) => {
-    const user = new User({ email: 'asdadasdasdsa@email.com', username: 'fakeuser' });
-    const newUser = await User.register(user,'password');
+// app.get('/fakeUser', async (req, res) => {
+//     const user = new User({ email: 'asdadasdasdsa@email.com', username: 'fakeuser' });
+//     const newUser = await User.register(user,'password');
 
-    res.send(newUser);
-});
+//     res.send(newUser);
+// });
 
+app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
-app.use('/', userRoutes);
 
 app.get('/', (req, res) => {
     res.render('home')
@@ -101,7 +101,6 @@ app.get('/', (req, res) => {
 
 
 app.all('*', (req, res, next) => {
-    res.redirect('/campgrounds');
     next(new ExpressError('Page Not Found', 404))
 })
 
