@@ -14,12 +14,7 @@ router.route('/')
     //renders all randomly generated campgrounds onto the 'main' page
     .get(catchAsync(campgrounds.index))
     //setting up the endpoint where created data will be send to
-    // .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
-
-    .post(upload.array('campgroundImg'), (req,res) => {
-        console.log(req.body, req.files);
-        res.send('it worked');
-    })
+    .post(isLoggedIn, upload.array('campgroundImg'), validateCampground, catchAsync(campgrounds.createCampground));
 
 //creating new campgrounds
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)
