@@ -51,12 +51,21 @@ module.exports.editForm = async (req, res) => {
 //update campgrund
 module.exports.updateCampground = async (req, res) => {
     const { id } = req.params;
-    console.log(req.body);
     const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
     const images = req.files.map(f => ({url: f.path, filename: f.filename}));
+
     ///... is a spread operator, so instead of pushing an array into an array, you're taking the data and saving it in
     campground.images.push(...images);
+
     await campground.save();
+
+    if (req.body.deleteImages) {
+      const cleanedFilenames = req.body.deleteImages.map(filename => filename.trim());
+      console.log("Images to delete:", cleanedFilenames);
+      // PULL from the IMAGES array all images where the FILENAME of that image is IN the req.body... array
+      await campground.updateOne({ $pull:{images: {filename: {$in: req.body.deleteImages}}}});
+      console.log(campground);
+    };
     req.flash('success', 'Sucessfully updated campground!');
     res.redirect(`/campgrounds/${campground._id}`)
 }
