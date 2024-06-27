@@ -50,3 +50,8 @@ If you ever reseed or are installing this on a new device, once you have started
    > Type `node seeds`
 7. Restart the server: `nodemon`
 8. Campground details page should now be viewable 🎉
+
+Also do this with [MapTiler integration](https://zarkomaslaric.notion.site/YelpCamp-Maps-Replacement-MapTiler-819d354aa8a64058939d35b5799665a4)
+
+- ^ follow links
+- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22346278#questions
