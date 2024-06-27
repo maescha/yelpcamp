@@ -74,7 +74,7 @@ module.exports.updateCampground = async (req, res) => {
       };
       // PULL from the IMAGES array all images where the FILENAME of that image is IN the req.body... array
       await campground.updateOne({ $pull:{images: {filename: {$in: req.body.deleteImages}}}});
-      console.log(campground);
+          // console.log(campground);
     };
     req.flash('success', 'Sucessfully updated campground!');
     res.redirect(`/campgrounds/${campground._id}`)
