@@ -31,16 +31,6 @@
         </div>
     </div>
 
-
-    <input type="file" name="campgroundImg" id="" multiple>
-      <!-- <div class="mb-3">
-        <label class="form-label" for="Image">Image URL</label>
-        <input class="form-control" type="text" id="image" name="campground[image]" required>
-        <div class="invalid-feedback">
-          Please provide a proper image URL!
-        </div>
-    </div> -->
-
     <div class="mb-3">
       <label class="form-label" for="description">Description</label>
       <textarea class="form-control" type="text" id="description" name="campground[description]" required></textarea>
@@ -48,6 +38,15 @@
         Please provide a proper description!
       </div>
   </div>
+
+
+  <div class="mb-3">
+    <label class="form-label" for="Image">Image</label>
+    <input type="file" class="form-control form-input" name="campgroundImg" id="" multiple>
+    <div class="invalid-feedback">
+      Please provide a proper image!
+    </div>
+</div>
 
       <div class="mb-3">
         <button class="btn btn-success">Add Campground</button>
