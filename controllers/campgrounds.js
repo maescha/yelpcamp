@@ -1,4 +1,5 @@
 const Campground = require('../models/campground');
+const { cloudinary } = require("../cloudinary")
 
 module.exports.index = async (req, res) => {
     const campgrounds = await Campground.find({});
@@ -60,8 +61,6 @@ module.exports.updateCampground = async (req, res) => {
     await campground.save();
 
     if (req.body.deleteImages) {
-      const cleanedFilenames = req.body.deleteImages.map(filename => filename.trim());
-      console.log("Images to delete:", cleanedFilenames);
       // PULL from the IMAGES array all images where the FILENAME of that image is IN the req.body... array
       await campground.updateOne({ $pull:{images: {filename: {$in: req.body.deleteImages}}}});
       console.log(campground);
