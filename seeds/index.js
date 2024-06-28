@@ -44,7 +44,7 @@ const seedDB = async () => {
             price,
             geometry: {
                 type: "Point",
-                coordinates: [41.40338, 2.17403],
+                coordinates: [16.62662018, 49.2125578],
               },
         })
         await camp.save();

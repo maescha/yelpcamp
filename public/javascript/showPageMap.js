@@ -1,4 +1,4 @@
-maptilersdk.config.apiKey = maptilerApiKey;
+maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 const map = new maptilersdk.Map({
     container: "map",
