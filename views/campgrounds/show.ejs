@@ -1,13 +1,18 @@
 <% layout('layouts/boilerplate')%>
 <link rel="stylesheet" type="text/css" href="/stylesheets/stars.css">
 
+<script>
+    const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
+    const campground = <%- JSON.stringify(campground) %>
+</script>
+
 <div class="row">
     <div class="col-6">
 
 
         <div class="card mb-3">
 
-            <div id="map" style="width: 400px; height: 300px;"></div>
+            <div id="map"></div>
 
 
             <div id="carouselCarousel" class="carousel slide" >
@@ -110,20 +115,6 @@
             </div>
         <% } %>
     </div>
-
 </div>
 
-<script>
-    const maptilerApiKey = "<%- process.env.MAPTILER_API_KEY %>";
-    const campground = <%- JSON.stringify(campground) %>;
-
-    const map = new maptilersdk.Map({
-        container: "map",
-        style: maptilersdk.MapStyle.BASIC,
-        center: campground.geometry.coordinates, // starting position [lng, lat]
-        zoom: 10 // starting zoom
-    });
-
-</script>
-
-- public/javascripts/showPageMap.js changes:
+<script src="/javascript/showPageMap.js"></script>
